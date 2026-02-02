@@ -2,9 +2,18 @@ from sqlalchemy import create_engine, Column, String, Float, DateTime, Integer
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 import datetime
-
+import os
 Base = declarative_base()
 
+# Professional check: 
+# If running on Streamlit Cloud, use a simple local file.
+# If running in Docker, use the /data volume.
+if os.path.exists("/app/data"):
+    # This is for your Docker container
+    DB_URL = "sqlite:///data/news_data.db"
+else:
+    # This is for Streamlit Cloud deployment
+    DB_URL = "sqlite:///news_data.db"
 class Article(Base):
     __tablename__ = 'articles'
     id = Column(Integer, primary_key=True)
@@ -16,7 +25,7 @@ class Article(Base):
 
 class DBManager:
     def __init__(self):
-        self.engine = create_engine('sqlite:///data/news_data.db')
+        self.engine = create_engine(DB_URL)
         Base.metadata.create_all(self.engine)
         self.Session = sessionmaker(bind=self.engine)
 
