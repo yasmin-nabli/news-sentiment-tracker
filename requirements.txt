@@ -1,0 +1,5 @@
+newspaper4k
+nltk
+pandas
+streamlit
+sqlalchemy
