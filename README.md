@@ -41,4 +41,4 @@ The easiest way to run this project is using Docker. This ensures all dependenci
 - **Dockerfile & docker-compose.yml:** Containerization and volume mapping configuration.
 - **data/:** Persistent storage directory for the SQLite database (mounted as a volume).
 
-##**👨‍💻 Developed by Yasmine Nabli**
+##👨‍💻 Developed by Yasmine Nabli
